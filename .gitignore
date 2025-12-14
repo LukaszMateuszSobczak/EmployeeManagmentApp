@@ -78,3 +78,36 @@ GeneratedFiles/
 
 # Node modules (if any frontend)
 node_modules/
+
+# Angular / Frontend
+client/dist/
+client/.angular/
+client/out-tsc/
+client/bazel-out/
+client/tmp/
+client/coverage/
+client/.sass-cache/
+client/connect.lock
+client/testem.log
+client/typings/
+client/__screenshots__/
+
+# Frontend environment files (may contain secrets)
+client/.env
+client/.env.local
+client/.env.*.local
+client/src/environments/environment.ts
+client/src/environments/environment.*.ts
+!client/src/environments/environment.prod.ts
+
+# Package manager files (optional)
+# client/package-lock.json
+# client/yarn.lock
+# client/pnpm-lock.yaml
+
+# E2E
+client/e2e/*.js
+client/e2e/*.map
+
+# Developer guide (local draft)
+DEVELOPER_GUIDE.md

@@ -1,0 +1,38 @@
+<div class="navbar bg-base-100 shadow-sm p-5 mb-7">
+  <a class="btn btn-ghost text-xl">{{title()}}</a>
+</div>
+
+
+<div class="overflow-x-auto p-5">
+  <table class="table table-zebra">
+    <!-- head -->
+    <thead>
+      <tr>
+
+        <th>Id pracownika</th>
+        <th>Imię</th>
+        <th>Nazwisko</th>
+        <th>Email</th>
+        <th>Numer telefonu</th>
+        <th>Płaca</th>
+        <th>Pozycja</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (employe of employees(); track employe.id) {
+      <tr>
+        <td>{{employe.id}} </td>
+        <td>{{employe.firstName}}</td>
+        <td>{{employe.lastName}}</td>
+        <td>{{employe.email}}</td>
+        <td>{{employe.phone}}</td>
+        <td>{{employe.salary}}</td>
+        <td>{{employe.position}}</td>
+      </tr>
+      }
+
+    </tbody>
+  </table>
+</div>
+
+<button class="btn btn-info">Info</button>
