@@ -9,11 +9,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace EmployeeManagmentApp.Data.Migrations
+namespace EmployeeManagmentApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20251231151734_AddEmployeesTable")]
-    partial class AddEmployeesTable
+    [Migration("20260102181023_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace EmployeeManagmentApp.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("EmployeeAppIdentityTest.Models.Address", b =>
+            modelBuilder.Entity("EmployeeManagmentApp.Models.Address", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -63,7 +63,7 @@ namespace EmployeeManagmentApp.Data.Migrations
                     b.ToTable("Addresses");
                 });
 
-            modelBuilder.Entity("EmployeeAppIdentityTest.Models.Employee", b =>
+            modelBuilder.Entity("EmployeeManagmentApp.Models.Employee", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -319,11 +319,11 @@ namespace EmployeeManagmentApp.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("EmployeeAppIdentityTest.Models.Address", b =>
+            modelBuilder.Entity("EmployeeManagmentApp.Models.Address", b =>
                 {
-                    b.HasOne("EmployeeAppIdentityTest.Models.Employee", "Employee")
+                    b.HasOne("EmployeeManagmentApp.Models.Employee", "Employee")
                         .WithOne("Address")
-                        .HasForeignKey("EmployeeAppIdentityTest.Models.Address", "EmployeeId")
+                        .HasForeignKey("EmployeeManagmentApp.Models.Address", "EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -381,7 +381,7 @@ namespace EmployeeManagmentApp.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("EmployeeAppIdentityTest.Models.Employee", b =>
+            modelBuilder.Entity("EmployeeManagmentApp.Models.Employee", b =>
                 {
                     b.Navigation("Address")
                         .IsRequired();
