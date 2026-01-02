@@ -25,8 +25,13 @@ namespace EmployeeManagmentApp.Services
             return employee;
         }
 
-        public async Task<Employee> AddEmployeeAsync(Employee employee, string userId)
+        public async Task<Employee?> AddEmployeeAsync(Employee employee, string userId)
         {
+            var existEmployeePesel = await _context.Employees.FirstOrDefaultAsync(e => e.Pesel == employee.Pesel && e.UserId == userId);
+            if (existEmployeePesel != null)
+            {
+                return null;
+            }
             employee.UserId = userId;
             employee.CreatedAt = DateTime.UtcNow;
             await _context.Employees.AddAsync(employee);
@@ -39,6 +44,13 @@ namespace EmployeeManagmentApp.Services
             Employee? existing = await _context.Employees.Include(e => e.Address).FirstOrDefaultAsync(e => e.UserId == userId && e.Id == employee.Id);
 
             if (existing is null)
+            {
+                return null;
+            }
+
+            var existingPesel = await _context.Employees.FirstOrDefaultAsync(e => e.Pesel == employee.Pesel && e.Id != employee.Id && e.UserId == userId);
+
+            if (existingPesel != null)
             {
                 return null;
             }

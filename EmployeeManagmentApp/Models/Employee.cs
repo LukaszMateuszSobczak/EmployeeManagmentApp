@@ -14,6 +14,7 @@ namespace EmployeeManagmentApp.Models
         [Required(ErrorMessage = "Pole pesel jest wymagane")]
         [StringLength(11, MinimumLength = 11, ErrorMessage = "Pole pesel musi zawierać dokładnie 11 znaków")]
         [RegularExpression(@"^\d+$", ErrorMessage = "Pole pesel musi zawierać tylko cyfry")]
+        
         public string Pesel { get; set; } = string.Empty;
         [Required(ErrorMessage = "Pole email jest wymagane")]
         [EmailAddress(ErrorMessage = "Niepoprawny format email")]

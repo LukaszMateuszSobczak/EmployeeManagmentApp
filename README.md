@@ -97,7 +97,7 @@ Each employee record includes:
 
 **Personal Information:**
 - First Name, Last Name
-- PESEL (Polish national ID - validated format)
+- PESEL (Polish national ID - validated format), unique
 - Email, Phone
 
 **Employment Details:**
@@ -177,7 +177,7 @@ dotnet run
 
 ## 🧪 Validation Rules
 
-- **PESEL:** Exactly 11 digits
+- **PESEL:** Exactly 11 digits, must be unique among employees belonging to the same user
 - **Email:** Valid email format
 - **Phone:** Exactly 9 digits
 - **Postal Code:** Polish format (XX-XXX)

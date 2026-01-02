@@ -25,7 +25,7 @@ namespace EmployeeManagmentApp.Controllers
         public async Task<IActionResult> Index()
         {
             var userId = GetUserId();
-            if(userId is null)
+            if (userId is null)
             {
                 return Challenge();
             }
@@ -68,7 +68,12 @@ namespace EmployeeManagmentApp.Controllers
             {
                 return View(employee);
             }
-            await _service.AddEmployeeAsync(employee, userId);
+            var createdEmployee = await _service.AddEmployeeAsync(employee, userId);
+            if (createdEmployee == null)
+            {
+                ModelState.AddModelError("Pesel", "Pracownik z takim numerem pesel juz istnieje");
+                return View(employee);
+            }
             TempData["SuccessMessage"] = "Pomyślnie dodano pracownika";
             return RedirectToAction("Index");
         }
@@ -103,7 +108,13 @@ namespace EmployeeManagmentApp.Controllers
             {
                 return View(employee);
             }
-            await _service.UpdateEmployeeAsync(employee, userId);
+            var updatedEmployee = await _service.UpdateEmployeeAsync(employee, userId);
+
+            if (updatedEmployee == null)
+            {
+                ModelState.AddModelError("Pesel", "Pracownik o danym numerze PESEL już istnieje");
+                return View(employee);
+            }
 
             TempData["SuccessMessage"] = "Pomyślnie edytowano pracownika";
             return RedirectToAction("Index");
