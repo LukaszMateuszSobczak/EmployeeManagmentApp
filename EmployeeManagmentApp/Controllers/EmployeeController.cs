@@ -29,6 +29,7 @@ namespace EmployeeManagmentApp.Controllers
             {
                 return Challenge();
             }
+
             var employees = await _service.GetEmployeesAsync(userId);
             return View(employees);
         }
