@@ -196,7 +196,7 @@ namespace EmployeeManagmentApp.Controllers
                     worksheet.Cells[i + 2, 3].Value = employees[i].LastName;
                     worksheet.Cells[i + 2, 4].Value = employees[i].Pesel;
                     worksheet.Cells[i + 2, 5].Value = employees[i].Email;
-                    worksheet.Cells[i + 2, 6].Value = employees[i].Phone
+                    worksheet.Cells[i + 2, 6].Value = employees[i].Phone;
                     worksheet.Cells[i + 2, 7].Value = employees[i].Salary;
                     worksheet.Cells[i + 2, 8].Value = employees[i].HireDate;
                     worksheet.Cells[i + 2, 9].Value = employees[i].Address.City;
