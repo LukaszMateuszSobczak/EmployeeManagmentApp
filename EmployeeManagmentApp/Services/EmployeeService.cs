@@ -1,6 +1,7 @@
 ﻿using EmployeeManagmentApp.Data;
 using EmployeeManagmentApp.Models;
-using Microsoft.AspNetCore.Authorization;
+using EmployeeManagmentApp.Services.Intrefaces;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeManagmentApp.Services
@@ -11,26 +12,6 @@ namespace EmployeeManagmentApp.Services
         public EmployeeService(ApplicationDbContext context)
         {
             _context = context;
-        }
-
-        private Employee CapitalizeEmployeeFields(Employee employee)
-        {
-            employee.FirstName = CapitalizeFirstLetter(employee.FirstName);
-            employee.LastName = CapitalizeFirstLetter(employee.LastName);
-            employee.Position = CapitalizeFirstLetter(employee.Position);
-            employee.Address.StreetName = CapitalizeFirstLetter(employee.Address.StreetName);
-            employee.Address.City = CapitalizeFirstLetter(employee.Address.City);
-            return employee;
-        }
-        private string CapitalizeFirstLetter(string text)
-        {
-            if(string.IsNullOrEmpty(text))
-            {
-                return text;
-            }
-            text = text.Trim();
-            text = char.ToUpper(text[0]) + text.Substring(1).ToLower();
-            return text;
         }
 
         public async Task<List<Employee>> GetEmployeesAsync(string userId)
@@ -143,6 +124,65 @@ namespace EmployeeManagmentApp.Services
 
             return query.ToListAsync();
 
+        }
+
+        public async Task<List<Employee>> SortEmployees(string userId, string? sortOrder)
+        {
+            var query = _context.Employees.Where(e => e.UserId == userId).Include(e => e.Address).AsQueryable();
+
+            switch (sortOrder)
+            {
+                case "first-name-desc":
+                    query = query.OrderByDescending(e => e.FirstName);
+                    break;
+                case "first-name":
+                    query = query.OrderBy(e => e.FirstName);
+                    break;
+                case "last-name":
+                    query = query.OrderByDescending(e => e.LastName);
+                    break;
+                case "last-name-desc":
+                    query = query.OrderBy(e => e.LastName);
+                    break;
+                case "hire-date-desc":
+                    query = query.OrderByDescending(e => e.HireDate);
+                    break;
+                case "hire-date":
+                    query = query.OrderBy(e => e.HireDate);
+                    break;
+                case "city-desc":
+                    query = query.OrderByDescending(e => e.Address.City);
+                    break;
+                case "city":
+                    query = query.OrderBy(e => e.Address.City);
+                    break;
+                default:
+                    query = query.OrderByDescending(e => e.HireDate);
+                    break;
+            }
+
+            return await query.ToListAsync();
+        }
+
+        // PRIVATE METHODS
+        private Employee CapitalizeEmployeeFields(Employee employee)
+        {
+            employee.FirstName = CapitalizeFirstLetter(employee.FirstName);
+            employee.LastName = CapitalizeFirstLetter(employee.LastName);
+            employee.Position = CapitalizeFirstLetter(employee.Position);
+            employee.Address.StreetName = CapitalizeFirstLetter(employee.Address.StreetName);
+            employee.Address.City = CapitalizeFirstLetter(employee.Address.City);
+            return employee;
+        }
+        private string CapitalizeFirstLetter(string text)
+        {
+            if (string.IsNullOrEmpty(text))
+            {
+                return text;
+            }
+            text = text.Trim();
+            text = char.ToUpper(text[0]) + text.Substring(1).ToLower();
+            return text;
         }
 
     }

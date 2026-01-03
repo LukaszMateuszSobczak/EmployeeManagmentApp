@@ -1,6 +1,6 @@
 ﻿using EmployeeManagmentApp.Models;
 
-namespace EmployeeManagmentApp.Services
+namespace EmployeeManagmentApp.Services.Intrefaces
 {
     public interface IEmployeeService
     {
@@ -11,6 +11,7 @@ namespace EmployeeManagmentApp.Services
         Task<bool> DeleteEmployeeAsync(int id, string userId);
 
         Task<List<Employee>> SearchEmployeesAsync(string? firstName, string? lastName, string? pesel, string? city, string userId);
+        Task<List<Employee>> SortEmployees(string userId, string? sortOrder);
 
     }
 }

@@ -22,43 +22,26 @@
         <div class="col-6">
             <h2>Pracownicy</h2>
         </div>
-        <div class="col-6 text-end">
-            <a asp-controller="Employee" asp-action="Create" class="btn btn-success">Dodaj pracownika</a>
+        <div class="col-6 text-end d-flex flex-row justify-content-between">
+            <div class="d-flex gap-4">
+                <form asp-action="ExportToExcel" method="post">
+                    <button type="submit" class="btn btn-primary">Exportuj do excela</button>
+                </form>
+                <form asp-action="ExportToCsv" method="post">
+                    <button type="submit" class="btn btn-primary">Exportuj do csv</button>
+                </form>
+            </div>
+            <div>
+                <a asp-action="Create" class="btn btn-success">Dodaj pracownika</a>
+            </div>
         </div>
-        
+
     </div>
-    
+
 </div>
 
 
-<div class="table-responsive">
-    <table class="table table-striped table-hover">
-        <thead>
-            <tr class="table-dark">
-                <th>Imię</th>
-                <th>Nazwisko</th>
-                <th>Pesel</th>
-                <th>Miasto</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var employee in Model)
-            {
-                <tr class="table-light">
-                    <td>@employee.FirstName</td>
-                    <td>@employee.LastName</td>
-                    <td>@employee.Pesel</td>
-                    <td>@employee.Address.City</td>
-                    <td>
-                        <a class="btn btn-outline-primary btn-sm text-uppercase fw-bold" asp-controller="Employee" asp-action="Details" asp-route-id="@employee.Id">Szczegóły</a>
-                    </td>
-
-                </tr>
-            }
-        </tbody>
-    </table>
-</div>
+<partial name="_EmployeesTable" model="Model" />
 
 
 @* <div class="accordion" id="accordion">

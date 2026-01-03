@@ -1,5 +1,6 @@
 using EmployeeManagmentApp.Data;
 using EmployeeManagmentApp.Services;
+using EmployeeManagmentApp.Services.Intrefaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
