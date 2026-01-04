@@ -164,12 +164,6 @@ namespace EmployeeManagmentApp.Controllers
             return View(employees);
         }
 
-        [HttpGet]
-        public IActionResult Export()
-        {
-            return View();
-        }
-
         [HttpPost]
         public async Task<IActionResult> ExportToExcel()
         {
