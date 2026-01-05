@@ -1,4 +1,4 @@
-﻿# 🏢 Employee Management System
+# 🏢 Employee Management System
 
 A secure, multi-tenant employee management web application built with ASP.NET Core MVC, featuring row-level security and service layer architecture.
 
@@ -129,7 +129,7 @@ Each employee record includes:
 1. **Clone the repository**
 ```bash
 git clone https://github.com/LukaszMateuszSobczak/EmployeeManagmentApp.git
-cd EmployeeAppIdentity
+cd EmployeeAppManagmentApp
 ```
 
 2. **Update the connection string**
@@ -182,7 +182,6 @@ dotnet run
 ### Export to Excel or CSV
 ![Export excel](docs/employee-excel.png)
 ![Export csv](docs/employee-csv.png)
-
 
 
 ## 🧪 Validation Rules
