@@ -129,7 +129,7 @@ Each employee record includes:
 1. **Clone the repository**
 ```bash
 git clone https://github.com/LukaszMateuszSobczak/EmployeeManagmentApp.git
-cd EmployeeAppManagmentApp
+cd EmployeeMagagmentApp
 ```
 
 2. **Update the connection string**
